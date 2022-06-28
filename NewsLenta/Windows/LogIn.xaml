@@ -1,0 +1,33 @@
+﻿<Window x:Class="NewsLenta.Windows.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewsLenta.Windows"
+        mc:Ignorable="d"
+        Title="LogIn" Height="300" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="Azure">
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="30">
+                <Label Content="Логин" Margin="-10,0,10,0" FontSize="15"/>
+                <TextBox x:Name="userLogin" Margin="0,0,0,0" Height="30" VerticalContentAlignment="Center" FontSize="15"/>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top" Margin="30,0,30,0">
+                <Label Content="Пароль" Margin="-10,0,0,0" FontSize="15"/>
+                <TextBox x:Name="userPassword" Margin="0,0,0,0" Height="30" VerticalContentAlignment="Center" FontSize="15"/>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top" Margin="30,0,30,0">
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="LogInAccount" Margin="0,30,0,20" Content="Вход" Height="30" Click="LogIn_Click"/>
+                    <Button x:Name="LogUpAccount" Content="Зарегистрироваться" Height="30" Click="LogUp_Click"/>
+                </StackPanel>
+            </DockPanel>
+
+            <DockPanel>
+                <Rectangle/>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

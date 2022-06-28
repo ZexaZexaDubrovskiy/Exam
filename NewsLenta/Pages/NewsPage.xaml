@@ -1,0 +1,90 @@
+﻿<Page x:Class="NewsLenta.Pages.NewsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NewsLenta.Pages" xmlns:local_convert="clr-namespace:NewsLenta"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewsPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local_convert:ConverterValue x:Key="convertervalue">
+        </local_convert:ConverterValue>
+    </Page.Resources>
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition x:Name="newsColumnChange" Width="400" MaxWidth="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Новости" FontSize="30" FontWeight="ExtraBold"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="3" Grid.Column="0">
+            <Button x:Name="addNews" Content="Добавить" Width="80" Height="30" Margin="10,0,10,0" Click="addNews_Click"/>
+            <Button x:Name="copyNews" Content="Копировать" Width="80" Height="30" Margin="0,0,10,0" Click="copyNews_Click"/>
+            <Button x:Name="editNews" Content="Изменить" Width="80" Height="30" Margin="0,0,10,0" Click="editNews_Click"/>
+            <Button x:Name="deleteNews" Content="Удалить" Width="80" Height="30" Margin="0,0,10,0" Click="deleteNews_Click"/>
+            <Label Content="|" Height="30" Width="30" HorizontalContentAlignment="Center" FontSize="15"/>
+
+            <ComboBox x:Name="newsComboBox" Width="130" Height="30" Margin="10,0,30,0"/>
+            <TextBox x:Name="newsTextBox" Width="130" Height="30" TextChanged="newsTextBox_TextChanged"/>
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <DataGrid x:Name="newsGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="descriptions" Binding="{Binding Path=descriptions}"/>
+                    <DataGridTextColumn Header="full_text" Binding="{Binding Path=full_text}"/>
+                    <DataGridTextColumn Header="date_make" Binding="{Binding Path=date_make, Converter={StaticResource convertervalue }}"/>
+                    <DataGridTextColumn Header="date_update" Binding="{Binding Path=date_update, Converter={StaticResource convertervalue }}"/>
+
+                    <DataGridTextColumn Header="kategory_id" Binding="{Binding Path=Kategories.Kategories_id}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <GridSplitter Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Width="3" />
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" Background="AliceBlue">
+            <Label x:Name="newsDoingLabel" Content="Добавить" FontSize="20" FontWeight="ExtraBold"/>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="заголовок" FontSize="13" Margin="10,0,70,0"/>
+                <TextBox x:Name="newsDisctiptions" Height="30" Width="170"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="Весь текст" FontSize="13" Margin="10,0,70,0"/>
+                <TextBox x:Name="newsFullText" Height="30" Width="170"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="Дата релиза" FontSize="13" Margin="10,0,60,0"/>
+                <TextBox x:Name="newsDateMake" Height="30" Width="170"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="Дата обновления" FontSize="13" Margin="10,0,30,0"/>
+                <TextBox x:Name="newsDateUpdate" Height="30" Width="170"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="категория" FontSize="13" Margin="10,0,75,0"/>
+                <ComboBox x:Name="kategoriesComboBox" Height="30" Width="170" DisplayMemberPath="name_kategory"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Button x:Name="AddCommitButton" Content="Добавить" Margin="80,0,0,0" Width="100" Height="30" Click="AddCommitButton_Click"/>
+                <Button x:Name="CancelButton" Content="Отменить" Margin="30,0,0,0" Width="100" Height="30" Click="CancelButton_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>
